@@ -1,6 +1,28 @@
 /* CURSOR */
 /* ── CURSOR: mouse only, fully disabled on touch/mobile ── */
+if (window.innerWidth <= 768) {
 
+  const cur = document.getElementById('cur');
+
+  // Move with finger
+  document.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    cur.style.left = touch.clientX + 'px';
+    cur.style.top = touch.clientY + 'px';
+  });
+
+  // Tap animation (click feel)
+  document.addEventListener('touchstart', () => {
+    cur.style.transform = 'translate(-50%, -50%) scale(1.8)';
+    cur.style.opacity = '0.7';
+  });
+
+  document.addEventListener('touchend', () => {
+    cur.style.transform = 'translate(-50%, -50%) scale(1)';
+    cur.style.opacity = '1';
+  });
+
+}
 /* NAV */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
