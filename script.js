@@ -1,12 +1,71 @@
 /* CURSOR */
-const cur=document.getElementById('cur'),curR=document.getElementById('curR');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button,.s-card,.perk,.g-item,.t-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';curR.style.width='60px';curR.style.height='60px';});
-  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curR.style.width='38px';curR.style.height='38px';});
-});
+/* ── CURSOR: mouse only, fully disabled on touch/mobile ── */
+(function () {
+  const isMouseDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  const cur  = document.getElementById('cur');
+  const curR = document.getElementById('curR');
+
+  /* ── Touch / mobile device ── */
+  if (!isMouseDevice) {
+    /* Remove cursor elements from DOM entirely so they
+       can never block or intercept any tap events       */
+    if (cur)  cur.remove();
+    if (curR) curR.remove();
+
+    /* Restore default cursor on body */
+    document.body.style.cursor = 'auto';
+
+    /* Fix every interactive element to be tappable */
+    document.querySelectorAll(
+      'a, button, input, select, textarea, label, ' +
+      '[role="button"], [onclick]'
+    ).forEach(function (el) {
+      el.style.pointerEvents = 'auto';
+      el.style.cursor        = 'pointer';
+      el.style.touchAction   = 'manipulation';
+    });
+
+    return; /* stop here — no cursor code needed on mobile */
+  }
+
+  /* ── Mouse / desktop device ── */
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX;
+    my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top  = my + 'px';
+  });
+
+  (function loop() {
+    rx += (mx - rx) * 0.11;
+    ry += (my - ry) * 0.11;
+    curR.style.left = rx + 'px';
+    curR.style.top  = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll(
+    'a, button, .sp-card, .perk, .gal-item, ' +
+    '.tc, .cs-pill, .wa-chip, .wa-fab'
+  ).forEach(function (el) {
+    el.addEventListener('mouseenter', function () {
+      cur.style.width   = '20px';
+      cur.style.height  = '20px';
+      curR.style.width  = '58px';
+      curR.style.height = '58px';
+    });
+    el.addEventListener('mouseleave', function () {
+      cur.style.width   = '10px';
+      cur.style.height  = '10px';
+      curR.style.width  = '38px';
+      curR.style.height = '38px';
+    });
+  });
+
+})();
 
 /* NAV */
 const nav=document.getElementById('nav');
