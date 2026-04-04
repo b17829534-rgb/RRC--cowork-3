@@ -225,6 +225,37 @@
   .wa-fab-icon{width:30px;height:30px}
   .wa-tooltip{display:none}
 }
+@media (max-width: 768px) {
+    .wa-root {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+      pointer-events: auto;
+    }
+    .wa-panel {
+    width: calc(100vw - 24px);  /* slightly smaller than full width */
+    max-width: 300px;            /* adjust for mobile */
+    pointer-events: auto
+  }
+
+  /* Adjust floating action button size */
+  .wa-fab {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Adjust icon size inside the button */
+  .wa-fab-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Hide tooltip on mobile */
+  .wa-tooltip {
+    display: none;
+  }
+}
 </style>
   <style>
 /* ══════════════════════════════════════════════
