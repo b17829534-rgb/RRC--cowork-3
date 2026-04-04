@@ -26,7 +26,8 @@ button, a {
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:26px 64px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s,box-shadow .4s}
 nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(18px);padding:16px 64px;box-shadow:0 1px 0 var(--border)}
 .nav-logo img {
-  height: 60px;
+  height: 70px;
+  width:  150px;
   transition: 0.3s ease;
 }
 
