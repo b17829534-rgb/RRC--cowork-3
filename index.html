@@ -227,15 +227,15 @@
 }
 @media (max-width: 768px) {
     .wa-root {
-        bottom: 15px;
-        right: 15px;
+        bottom: 20px;
+        right: 16px;
         width: 50px;
         height: 50px;
     }
     .wa-panel {
     width: calc(100vw - 24px);  /* slightly smaller than full width */
     max-width: 300px;            /* adjust for mobile */
-    pointer-events: auto
+    pointer-events: auto;
   }
 
   /* Adjust floating action button size */
@@ -248,6 +248,7 @@
   .wa-fab-icon {
     width: 28px;
     height: 28px;
+    pointer-events: none;
   }
 
   /* Hide tooltip on mobile */
